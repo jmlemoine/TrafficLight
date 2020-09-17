@@ -7,21 +7,16 @@ import javax.swing.JComponent;
 
 public class StopLightDrawing1 extends JComponent {
 
-	Color go = Color.gray;
+	Color go = Color.green;
 	Color slow = Color.gray;
-	Color stop = Color.red;
+	Color stop = Color.gray;
 	
-	String activeLight = "red";
+	String activeLight = "green";
 	
 	public void paintComponent(Graphics g)
 	{
 		g.setColor(Color.darkGray);
 		g.fillRect(0, 0, 50, 130);
-		
-		g.setColor(Color.darkGray);
-		g.fillRect(200, 200, 100, 260);
-		
-		
 		
 		g.setColor(stop);
 		g.fillOval(10, 10, 25, 25);
@@ -33,7 +28,7 @@ public class StopLightDrawing1 extends JComponent {
 		g.fillOval(10, 90, 25, 25);
 	}
 	
-	public void changeColor()
+	/*public void changeColor()
 	{
 		go = Color.gray;
 		slow = Color.gray;
@@ -56,6 +51,6 @@ public class StopLightDrawing1 extends JComponent {
 			stop = Color.red;
 		}
 		repaint();
-	}
+	}*/
 	
 }

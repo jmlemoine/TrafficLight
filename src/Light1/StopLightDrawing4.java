@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JComponent;
 
-public class StopLightDrawing3 extends JComponent {
+public class StopLightDrawing4 extends JComponent {
 
 	Color go = Color.gray;
 	Color slow = Color.gray;

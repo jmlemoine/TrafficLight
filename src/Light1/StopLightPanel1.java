@@ -2,10 +2,12 @@ package Light1;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,9 +32,6 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 	public int h3, m3, s3, cs3;
 	public int h4, m4, s4, cs4;
 	
-	Timer tim = new Timer(5, this);
-	double x = 0, y = 0, velx = 0, vely = 0;
-	
 	JLabel label = new JLabel("00:00");
 	JLabel label2 = new JLabel("00:00");
 	JLabel label3 = new JLabel("00:00");
@@ -40,7 +39,6 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 	JButton start = new JButton("Start");
 	JButton pause = new JButton("Pause");
 	JButton stop = new JButton("Stop");
-	
 	
 		public StopLightPanel1() {
 			
@@ -54,7 +52,6 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 		mov2.setPreferredSize(new Dimension(500, 500));
 		mov3.setPreferredSize(new Dimension(500, 500));
 		
-		
 		buttonListener l = new buttonListener();
 		changeButton.addActionListener(l);
 		
@@ -67,8 +64,7 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 		buttonStop bsp = new buttonStop();
 		stop.addActionListener(bsp);
 		
-		add(mov2);
-		add(mov3);
+		
 		add(label);
 		add(light);
 		add(label2);
@@ -77,15 +73,16 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 		add(light3);
 		add(label4);
 		add(light4);
-		add(changeButton);
+		
 		add(start);
-		add(pause);
+		//add(pause);
 		add(stop);
 		
+		add(mov2);
+		add(mov3);
 		
 	}
 		
-	
 	private ActionListener acciones = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent ae)
@@ -129,9 +126,8 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 				light2.activeLight = "green";
 				light2.go = Color.green;
 				light2.stop = Color.gray;
-				mov3.up();
+				mov3.right();
 			}
-			//if(light2.activeLight.equals("red") && s2==15)
 			if (light3.activeLight.equals("red") && s3==45)
 			{
 				s3 = 0;
@@ -185,7 +181,7 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 				light2.go = Color.green;
 				light2.stop = Color.gray;
 				mov2.stop();
-				mov3.up();
+				mov3.right();
 			}
 			if(light2.activeLight.equals("yellow") && s2==5)
 			{
@@ -213,11 +209,7 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 				light4.stop = Color.red;
 				light4.slow = Color.gray;
 			}
-			/*if(m==60)
-			{
-				m = 0;
-				++h;
-			}*/
+			
 			actualizarLabel();
 			repaint();
 		}
@@ -225,10 +217,10 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 	
 	private void actualizarLabel()
 	{
-		String tiempo1 = /*(h<=9?"0":"")+h+":"+(m<=9?"0":"")+m+":"+*/(s<=9?"0":"")+s+":"+(cs<=9?"0":"")+cs;
-		String tiempo2 = /*(h<=9?"0":"")+h+":"+(m<=9?"0":"")+m+":"+*/(s2<=9?"0":"")+s2+":"+(cs2<=9?"0":"")+cs2;
-		String tiempo3 = /*(h<=9?"0":"")+h+":"+(m<=9?"0":"")+m+":"+*/(s3<=9?"0":"")+s3+":"+(cs3<=9?"0":"")+cs3;
-		String tiempo4 = /*(h<=9?"0":"")+h+":"+(m<=9?"0":"")+m+":"+*/(s4<=9?"0":"")+s4+":"+(cs4<=9?"0":"")+cs4;
+		String tiempo1 = (s<=9?"0":"")+s+":"+(cs<=9?"0":"")+cs;
+		String tiempo2 = (s2<=9?"0":"")+s2+":"+(cs2<=9?"0":"")+cs2;
+		String tiempo3 = (s3<=9?"0":"")+s3+":"+(cs3<=9?"0":"")+cs3;
+		String tiempo4 = (s4<=9?"0":"")+s4+":"+(cs4<=9?"0":"")+cs4;
 		label.setText(tiempo1);
 		label2.setText(tiempo2);
 		label3.setText(tiempo3);
@@ -252,8 +244,7 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 	{
 		public void actionPerformed(ActionEvent e) 
 		{
-			//light.changeColor();
-			//light2.changeColor();
+			
 		}
 	}
 	
@@ -266,12 +257,8 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 			pause.setEnabled(true);
 			stop.setEnabled(true);
 			
-			//tim.start();
-			//addKeyListener(this);
-			//setFocusable(true);
-			//setFocusTraversalKeysEnabled(false);
 			mov2.down();
-			//mov3.up();
+
 			light.activeLight = "green";
 			light.go = Color.green;
 			light.stop = Color.gray;
@@ -283,10 +270,12 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 	{
 		public void actionPerformed(ActionEvent evt)
 		{
+			
 			t.stop();
 			pause.setEnabled(false);
 			start.setEnabled(true);
 			stop.setEnabled(true);
+			
 		}
 	}
 	
@@ -309,6 +298,7 @@ public class StopLightPanel1 extends JPanel implements ActionListener {
 			h3=0; m3=0; s3=0; cs3=0;
 			h4=0; m4=0; s4=0; cs4=0;
 			actualizarLabel();
+			
 		}
 	}
 

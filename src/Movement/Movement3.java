@@ -29,7 +29,7 @@ public class Movement3 extends JPanel implements ActionListener {
 		//g2.fill(new Ellipse2D.Double(x, y, 40, 40));*/
 		
 		g.setColor(Color.red);
-		g.fillRect(x, y, 40, 80);
+		g.fillRect(x, y, 80, 40);
 		
 		
 	}

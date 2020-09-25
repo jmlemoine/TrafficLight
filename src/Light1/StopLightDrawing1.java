@@ -7,11 +7,11 @@ import javax.swing.JComponent;
 
 public class StopLightDrawing1 extends JComponent {
 
-	Color go = Color.green;
+	Color go = Color.gray;
 	Color slow = Color.gray;
-	Color stop = Color.gray;
+	Color stop = Color.red;
 	
-	String activeLight = "green";
+	String activeLight = "red";
 	
 	public void paintComponent(Graphics g)
 	{
